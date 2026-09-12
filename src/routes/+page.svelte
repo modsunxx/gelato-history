@@ -32,10 +32,13 @@
 
 		<!-- กล่อง Mockup รูปภาพ (ทำเอง/ถ่ายเอง/AI/ตัดต่อ) -->
 		<div
-			class="flex h-80 flex-col items-center justify-center rounded-xl border-4 border-dashed border-[#87bba2] bg-[#f0f7f4] p-6 text-center"
+			class="mx-auto flex aspect-video w-full max-w-4xl flex-col items-center justify-center rounded-xl border-4 border-dashed border-[#87bba2] bg-[#f0f7f4] p-6 text-center"
 		>
 			<span class="mb-4 text-5xl">🖼️</span>
 			<span class="text-xl font-bold text-[#555]">[ พื้นที่สำหรับรูปภาพ Gelato ]</span>
+			<span class="mt-2 text-base font-semibold text-[#2d5a27]"
+				>📌 ขนาดที่แนะนำ: 1280 x 720 px (สัดส่วน 16:9)</span
+			>
 			<span class="mt-2 text-sm text-gray-500"
 				>(เตรียมใส่รูปภาพที่วาดเอง ถ่ายเอง ตัดต่อ หรือใช้ AI ที่นี่)</span
 			>
@@ -55,10 +58,13 @@
 
 		<!-- กล่อง Mockup วิดีโอ/ภาพเคลื่อนไหว -->
 		<div
-			class="relative flex h-96 flex-col items-center justify-center overflow-hidden rounded-xl border-4 border-dashed border-[#e9c46a] bg-[#fdf6e3] p-6 text-center"
+			class="relative mx-auto flex aspect-video w-full max-w-4xl flex-col items-center justify-center overflow-hidden rounded-xl border-4 border-dashed border-[#e9c46a] bg-[#fdf6e3] p-6 text-center"
 		>
 			<span class="z-10 mb-4 text-5xl">🎬</span>
 			<span class="z-10 text-xl font-bold text-[#555]">[ พื้นที่สำหรับวิดีโอ / ภาพเคลื่อนไหว ]</span
+			>
+			<span class="z-10 mt-2 text-base font-semibold text-[#b58900]"
+				>📌 ขนาดที่แนะนำ: 1280 x 720 px (หรือ 1920 x 1080 px)</span
 			>
 			<span class="z-10 mt-2 text-sm text-gray-600"
 				>(ต้องใช้วิดีโอที่ทำเองอย่างน้อย 1 อันในเว็บเพจ)</span
