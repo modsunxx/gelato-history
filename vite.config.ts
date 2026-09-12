@@ -18,5 +18,14 @@ export default defineConfig({
 			// See https://svelte.dev/docs/kit/adapters for more information about adapters.
 			adapter: adapter()
 		})
-	]
+	],
+	build: {
+		rollupOptions: {
+			external: ['react-native-fs']
+		},
+		// อิงตาม Error Log ของ Vite ตัวใหม่ที่ใช้ Rolldown
+		rolldownOptions: {
+			external: ['react-native-fs']
+		}
+	}
 });
