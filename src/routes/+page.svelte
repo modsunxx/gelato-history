@@ -1,3 +1,7 @@
+<script>
+	import { resolve } from '$app/paths';
+</script>
+
 <svelte:head>
 	<title>Gelato History - หน้าแรก</title>
 </svelte:head>
@@ -26,7 +30,7 @@
 			เตรียมพบกับเรื่องราวความอร่อยที่เราตั้งใจนำเสนอ
 		</p>
 
-		<!-- กล่อง Mockup รูปภาพ (ทำเอง/ถ่ายเอง/AI/ตัดต่อ)[cite: 1] -->
+		<!-- กล่อง Mockup รูปภาพ (ทำเอง/ถ่ายเอง/AI/ตัดต่อ) -->
 		<div
 			class="flex h-80 flex-col items-center justify-center rounded-xl border-4 border-dashed border-[#87bba2] bg-[#f0f7f4] p-6 text-center"
 		>
@@ -49,7 +53,7 @@
 			วิดีโอแอนิเมชันด้านล่างนี้จะแสดงให้เห็นถึงขั้นตอนและศิลปะในการปั่นเจลลาโต้ให้ออกมาสมบูรณ์แบบ
 		</p>
 
-		<!-- กล่อง Mockup วิดีโอ/ภาพเคลื่อนไหว[cite: 1] -->
+		<!-- กล่อง Mockup วิดีโอ/ภาพเคลื่อนไหว -->
 		<div
 			class="relative flex h-96 flex-col items-center justify-center overflow-hidden rounded-xl border-4 border-dashed border-[#e9c46a] bg-[#fdf6e3] p-6 text-center"
 		>
@@ -67,28 +71,28 @@
 		<h2 class="mb-6 text-2xl font-bold text-[#4a3b32]">สำรวจเรื่องราวของ Gelato</h2>
 		<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
 			<a
-				href="/history"
+				href={resolve('/history')}
 				class="rounded-xl border-2 border-[#f0e4d7] bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-[#ffd1dc] hover:shadow-lg"
 			>
 				<h3 class="mb-2 text-xl font-bold text-[#d64550]">📜 ประวัติศาสตร์</h3>
 				<p class="text-sm text-gray-500">ต้นกำเนิดจากอิตาลี</p>
 			</a>
 			<a
-				href="/ingredients"
+				href={resolve('/ingredients')}
 				class="rounded-xl border-2 border-[#f0e4d7] bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-[#ffd1dc] hover:shadow-lg"
 			>
 				<h3 class="mb-2 text-xl font-bold text-[#d64550]">🍓 ส่วนผสมหลัก</h3>
 				<p class="text-sm text-gray-500">เคล็ดลับความอร่อย</p>
 			</a>
 			<a
-				href="/process"
+				href={resolve('/process')}
 				class="rounded-xl border-2 border-[#f0e4d7] bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-[#ffd1dc] hover:shadow-lg"
 			>
 				<h3 class="mb-2 text-xl font-bold text-[#d64550]">👨‍🍳 กรรมวิธีทำ</h3>
 				<p class="text-sm text-gray-500">ขั้นตอนการปั่น</p>
 			</a>
 			<a
-				href="/gallery"
+				href={resolve('/gallery')}
 				class="rounded-xl border-2 border-[#f0e4d7] bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-[#ffd1dc] hover:shadow-lg"
 			>
 				<h3 class="mb-2 text-xl font-bold text-[#d64550]">📸 แกลเลอรี</h3>
