@@ -10,17 +10,19 @@
 	let isLoop = $state(false);
 	let audioRef = $state<HTMLAudioElement>();
 
-	// Playlist เพลงในโฟลเดอร์ (เรียงตามภาพที่คุณเตรียมไว้)
+	// 🌟 Playlist แบบใหม่: เก็บทั้งที่อยู่ไฟล์เพลงและที่อยู่รูปภาพปก[cite: 2]
 	const playlist = [
-		"/audio/A Cruel Angel's Thesis.mp3",
-		'/audio/Crossing Field.mp3',
-		'/audio/Styx Helix.mp3',
-		'/audio/Unravel.mp3'
+		{ file: "/audio/A Cruel Angel's Thesis.mp3", cover: '/images/eva.png' },
+		{ file: '/audio/Crossing Field.mp3', cover: '/images/sao.png' },
+		{ file: '/audio/Styx Helix.mp3', cover: '/images/rezero.png' },
+		{ file: '/audio/Unravel.mp3', cover: '/images/tokyo.png' }
 	];
 	let currentTrackIndex = $state(0);
-	let currentAudioSrc = $derived(playlist[currentTrackIndex]);
 
-	// เก็บเพลงที่ถูกกดใจ (เก็บเป็น index ของ playlist) - SvelteSet reactive อยู่แล้ว ไม่ต้อง $state ครอบ
+	// ดึงเฉพาะที่อยู่ไฟล์เสียงไปให้ <audio> เล่น[cite: 2]
+	let currentAudioSrc = $derived(playlist[currentTrackIndex].file);
+
+	// เก็บเพลงที่ถูกกดใจ (เก็บเป็น index ของ playlist)[cite: 2]
 	let likedTracks = new SvelteSet<number>();
 	let isLiked = $derived(likedTracks.has(currentTrackIndex));
 
@@ -32,7 +34,7 @@
 		}
 	}
 
-	// แปลงวินาที -> "นาที:วินาที" เช่น 90 -> "1:30"
+	// แปลงวินาที -> "นาที:วินาที" เช่น 90 -> "1:30"[cite: 2]
 	function formatTime(seconds: number) {
 		if (!seconds || Number.isNaN(seconds)) return '0:00';
 		const m = Math.floor(seconds / 60);
@@ -40,57 +42,49 @@
 		return `${m}:${s.toString().padStart(2, '0')}`;
 	}
 
-	// ข้อมูลเพลง
+	// ข้อมูลเพลง[cite: 2]
 	let songTitle = $state('กำลังโหลด...');
 	let artistName = $state('...');
 	let albumArt = $state<string | null>(null);
 
-	// ควบคุมเวลาและแถบ Progress
+	// ควบคุมเวลาและแถบ Progress[cite: 2]
 	let currentTime = $state(0);
 	let duration = $state(0);
 	let progressPercent = $derived(duration > 0 ? (currentTime / duration) * 100 : 0);
 
-	// ฟังก์ชันโหลดข้อมูลเพลง (อัปเดตให้แสดงชื่อไฟล์ทันทีถ้าอ่าน Tag ไม่ได้)
-	function loadMetadata(path: string) {
-		// 1. ดึงชื่อไฟล์มาโชว์เป็นค่าเริ่มต้นทันที ป้องกันหน้าจอค้าง
+	// ฟังก์ชันโหลดข้อมูลเพลงแบบใหม่ (รับ Object เข้ามา)[cite: 2]
+	function loadMetadata(track: { file: string; cover: string }) {
+		const path = track.file;
 		const fileName = path.split('/').pop()?.replace('.mp3', '') || 'Gelato Song';
 		songTitle = decodeURIComponent(fileName);
 		artistName = 'Music Box';
-		albumArt = null;
 
-		// 2. พยายามอ่าน Tag (ถ้ามีรูปหรือชื่อจะถูกแทนที่ทีหลัง)
+		// 🌟 ใช้รูปภาพปกที่เราเตรียมไว้ทันที[cite: 2]
+		albumArt = track.cover;
+
 		try {
 			jsmediatags.read(path, {
 				onSuccess: (tag) => {
-					const { title, artist, picture } = tag.tags;
+					const { title, artist } = tag.tags;
+					// ถ้ามีชื่อเพลง/ศิลปินฝังมา ค่อยอัปเดตทับลงไป[cite: 2]
 					if (title) songTitle = title;
 					if (artist) artistName = artist;
-
-					if (picture) {
-						const { data, format } = picture;
-						let base64String = '';
-						for (let i = 0; i < data.length; i++) {
-							base64String += String.fromCharCode(data[i]);
-						}
-						albumArt = `data:${format};base64,${window.btoa(base64String)}`;
-					}
 				},
 				onError: (error) => {
-					// ปล่อยผ่านได้เลยเพราะเราตั้งชื่อไฟล์รอไว้แล้ว
 					console.log('ไฟล์นี้ไม่มี ID3 Tag หรืออ่านไม่ได้:', error.info);
 				}
 			});
 		} catch (err) {
-			// jsmediatags พังตอนรัน (มักเกิดจาก Buffer/stream ไม่มีใน browser) - ปล่อยผ่าน ใช้ชื่อไฟล์แทน
 			console.error('jsmediatags ทำงานผิดพลาด:', err);
 		}
 	}
 
 	onMount(() => {
-		loadMetadata(currentAudioSrc);
+		// โหลดเพลงแรกตอนเปิดเว็บ[cite: 2]
+		loadMetadata(playlist[currentTrackIndex]);
 	});
 
-	// เล่น / หยุด
+	// เล่น / หยุด[cite: 2]
 	async function togglePlay() {
 		if (audioRef) {
 			if (isPlaying) {
@@ -102,21 +96,20 @@
 		}
 	}
 
-	// เปลี่ยนเพลง (หน้า/หลัง/สุ่ม)
+	// เปลี่ยนเพลง (หน้า/หลัง/สุ่ม)[cite: 2]
 	async function changeTrack(step: number) {
 		if (isShuffle) {
-			// ระบบสุ่มเพลง
 			let nextIndex;
 			do {
 				nextIndex = Math.floor(Math.random() * playlist.length);
 			} while (nextIndex === currentTrackIndex && playlist.length > 1);
 			currentTrackIndex = nextIndex;
 		} else {
-			// ระบบเปลี่ยนเพลงปกติ (วนลูปหน้า-หลัง)
 			currentTrackIndex = (currentTrackIndex + step + playlist.length) % playlist.length;
 		}
 
 		currentTime = 0;
+		// ส่ง Object เพลงใหม่เข้าไป[cite: 2]
 		loadMetadata(playlist[currentTrackIndex]);
 
 		await tick();
@@ -125,7 +118,7 @@
 		}
 	}
 
-	// เมื่อเพลงเล่นจบ
+	// เมื่อเพลงเล่นจบ[cite: 2]
 	function onSongEnded() {
 		if (isLoop && audioRef) {
 			audioRef.currentTime = 0;
@@ -135,7 +128,7 @@
 		}
 	}
 
-	// ฟังก์ชันสำหรับคลิกที่หลอดเวลาเพื่อกรอเพลง (Seek)
+	// ฟังก์ชันสำหรับคลิกที่หลอดเวลาเพื่อกรอเพลง[cite: 2]
 	function seekMusic(event: MouseEvent) {
 		if (!audioRef || duration === 0) return;
 		const progressBar = event.currentTarget as HTMLElement;
@@ -170,7 +163,6 @@
 		<a href="/gallery" class="font-bold text-[#7a6355] transition hover:text-[#d64550]">แกลเลอรี</a>
 	</nav>
 
-	<!-- อัปเดต <audio> ให้ใช้ Event ฟังค่าแบบเรียลไทม์ -->
 	<audio
 		bind:this={audioRef}
 		src={currentAudioSrc}
@@ -195,7 +187,6 @@
 
 		<div class="w-full grow">
 			<div class="mb-4 flex items-start justify-between">
-				<!-- บังคับตัดคำถ้าชื่อเพลงยาวเกินไป -->
 				<div class="overflow-hidden pr-4">
 					<h3 class="truncate text-xl leading-tight font-bold text-[#5a3d31]" title={songTitle}>
 						{songTitle}
@@ -211,7 +202,6 @@
 				</button>
 			</div>
 
-			<!-- แถบ Progress Bar (เพิ่มระบบคลิกเพื่อกรอเพลง) -->
 			<!-- svelte-ignore a11y_click_events_have_key_events -->
 			<!-- svelte-ignore a11y_no_static_element_interactions -->
 			<div
@@ -219,21 +209,18 @@
 				onclick={seekMusic}
 			>
 				<div class="relative h-full rounded-full bg-[#d64550]" style="width: {progressPercent}%">
-					<!-- จุดสีแดงที่วิ่งตามเปอร์เซ็นต์ -->
 					<div
 						class="pointer-events-none absolute top-1/2 right-0 h-4 w-4 translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-[#d64550] bg-white shadow-sm"
 					></div>
 				</div>
 			</div>
 
-			<!-- ตัวเลขเวลา ปัจจุบัน / ความยาวเพลงทั้งหมด -->
 			<div class="mb-3 flex justify-between px-1 text-xs font-medium text-[#7a6355]">
 				<span>{formatTime(currentTime)}</span>
 				<span>{formatTime(duration)}</span>
 			</div>
 
 			<div class="mb-2 flex items-center justify-between px-4 text-[#7a6355]">
-				<!-- ปุ่ม Shuffle (สลับสีเมื่อเปิดใช้งาน) -->
 				<button
 					onclick={() => (isShuffle = !isShuffle)}
 					class="transition {isShuffle ? 'text-[#d64550]' : 'hover:text-[#d64550]'}"
@@ -260,7 +247,6 @@
 					<SkipForward size={24} fill="currentColor" />
 				</button>
 
-				<!-- ปุ่ม Loop (สลับสีเมื่อเปิดใช้งาน) -->
 				<button
 					onclick={() => (isLoop = !isLoop)}
 					class="transition {isLoop ? 'text-[#d64550]' : 'hover:text-[#d64550]'}"
