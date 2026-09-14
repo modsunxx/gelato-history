@@ -10,7 +10,7 @@
 	let isLoop = $state(false);
 	let audioRef = $state<HTMLAudioElement>();
 
-	// 🌟 Playlist แบบใหม่: เก็บทั้งที่อยู่ไฟล์เพลงและที่อยู่รูปภาพปก[cite: 2]
+	// 🌟 Playlist แบบใหม่: เก็บทั้งที่อยู่ไฟล์เพลงและที่อยู่รูปภาพปก[cite: 7]
 	const playlist = [
 		{ file: "/audio/A Cruel Angel's Thesis.mp3", cover: '/images/eva.png' },
 		{ file: '/audio/Crossing Field.mp3', cover: '/images/sao.png' },
@@ -19,10 +19,10 @@
 	];
 	let currentTrackIndex = $state(0);
 
-	// ดึงเฉพาะที่อยู่ไฟล์เสียงไปให้ <audio> เล่น[cite: 2]
+	// ดึงเฉพาะที่อยู่ไฟล์เสียงไปให้ <audio> เล่น[cite: 7]
 	let currentAudioSrc = $derived(playlist[currentTrackIndex].file);
 
-	// เก็บเพลงที่ถูกกดใจ (เก็บเป็น index ของ playlist)[cite: 2]
+	// เก็บเพลงที่ถูกกดใจ (เก็บเป็น index ของ playlist)[cite: 7]
 	let likedTracks = new SvelteSet<number>();
 	let isLiked = $derived(likedTracks.has(currentTrackIndex));
 
@@ -34,7 +34,7 @@
 		}
 	}
 
-	// แปลงวินาที -> "นาที:วินาที" เช่น 90 -> "1:30"[cite: 2]
+	// แปลงวินาที -> "นาที:วินาที" เช่น 90 -> "1:30"[cite: 7]
 	function formatTime(seconds: number) {
 		if (!seconds || Number.isNaN(seconds)) return '0:00';
 		const m = Math.floor(seconds / 60);
@@ -42,31 +42,31 @@
 		return `${m}:${s.toString().padStart(2, '0')}`;
 	}
 
-	// ข้อมูลเพลง[cite: 2]
+	// ข้อมูลเพลง[cite: 7]
 	let songTitle = $state('กำลังโหลด...');
 	let artistName = $state('...');
 	let albumArt = $state<string | null>(null);
 
-	// ควบคุมเวลาและแถบ Progress[cite: 2]
+	// ควบคุมเวลาและแถบ Progress[cite: 7]
 	let currentTime = $state(0);
 	let duration = $state(0);
 	let progressPercent = $derived(duration > 0 ? (currentTime / duration) * 100 : 0);
 
-	// ฟังก์ชันโหลดข้อมูลเพลงแบบใหม่ (รับ Object เข้ามา)[cite: 2]
+	// ฟังก์ชันโหลดข้อมูลเพลงแบบใหม่ (รับ Object เข้ามา)[cite: 7]
 	function loadMetadata(track: { file: string; cover: string }) {
 		const path = track.file;
 		const fileName = path.split('/').pop()?.replace('.mp3', '') || 'Gelato Song';
 		songTitle = decodeURIComponent(fileName);
 		artistName = 'Music Box';
 
-		// 🌟 ใช้รูปภาพปกที่เราเตรียมไว้ทันที[cite: 2]
+		// 🌟 ใช้รูปภาพปกที่เราเตรียมไว้ทันที[cite: 7]
 		albumArt = track.cover;
 
 		try {
 			jsmediatags.read(path, {
 				onSuccess: (tag) => {
 					const { title, artist } = tag.tags;
-					// ถ้ามีชื่อเพลง/ศิลปินฝังมา ค่อยอัปเดตทับลงไป[cite: 2]
+					// ถ้ามีชื่อเพลง/ศิลปินฝังมา ค่อยอัปเดตทับลงไป[cite: 7]
 					if (title) songTitle = title;
 					if (artist) artistName = artist;
 				},
@@ -80,11 +80,11 @@
 	}
 
 	onMount(() => {
-		// โหลดเพลงแรกตอนเปิดเว็บ[cite: 2]
+		// โหลดเพลงแรกตอนเปิดเว็บ[cite: 7]
 		loadMetadata(playlist[currentTrackIndex]);
 	});
 
-	// เล่น / หยุด[cite: 2]
+	// เล่น / หยุด[cite: 7]
 	async function togglePlay() {
 		if (audioRef) {
 			if (isPlaying) {
@@ -96,7 +96,7 @@
 		}
 	}
 
-	// เปลี่ยนเพลง (หน้า/หลัง/สุ่ม)[cite: 2]
+	// เปลี่ยนเพลง (หน้า/หลัง/สุ่ม)[cite: 7]
 	async function changeTrack(step: number) {
 		if (isShuffle) {
 			let nextIndex;
@@ -109,7 +109,7 @@
 		}
 
 		currentTime = 0;
-		// ส่ง Object เพลงใหม่เข้าไป[cite: 2]
+		// ส่ง Object เพลงใหม่เข้าไป[cite: 7]
 		loadMetadata(playlist[currentTrackIndex]);
 
 		await tick();
@@ -118,7 +118,7 @@
 		}
 	}
 
-	// เมื่อเพลงเล่นจบ[cite: 2]
+	// เมื่อเพลงเล่นจบ[cite: 7]
 	function onSongEnded() {
 		if (isLoop && audioRef) {
 			audioRef.currentTime = 0;
@@ -128,7 +128,7 @@
 		}
 	}
 
-	// ฟังก์ชันสำหรับคลิกที่หลอดเวลาเพื่อกรอเพลง[cite: 2]
+	// ฟังก์ชันสำหรับคลิกที่หลอดเวลาเพื่อกรอเพลง[cite: 7]
 	function seekMusic(event: MouseEvent) {
 		if (!audioRef || duration === 0) return;
 		const progressBar = event.currentTarget as HTMLElement;
@@ -147,20 +147,23 @@
 		style="background-image: radial-gradient(#d64550 2.5px, transparent 2.5px); background-size: 24px 24px;"
 	></div>
 
+	<!-- อัปเดต: Navbar ปรับ Layout สำหรับมือถือให้เป็นกล่องมนธรรมดา และเว้นระยะห่างปุ่มให้กดง่ายขึ้น -->
 	<nav
-		class="relative z-10 mx-auto mb-8 flex max-w-3xl flex-wrap justify-center gap-8 rounded-full bg-white/70 p-3 text-lg shadow-sm backdrop-blur-md"
+		class="relative z-20 mx-auto mb-8 flex w-[90%] max-w-3xl flex-wrap justify-center gap-x-3 gap-y-2 rounded-2xl bg-white/80 px-4 py-4 text-sm shadow-sm backdrop-blur-md sm:text-base md:gap-8 md:rounded-full md:px-8 md:text-lg"
 	>
-		<a href="/" class="font-bold text-[#7a6355] transition hover:text-[#d64550]">หน้าแรก</a>
-		<a href="/history" class="font-bold text-[#7a6355] transition hover:text-[#d64550]"
+		<a href="/" class="p-1.5 font-bold text-[#7a6355] transition hover:text-[#d64550]">หน้าแรก</a>
+		<a href="/history" class="p-1.5 font-bold text-[#7a6355] transition hover:text-[#d64550]"
 			>ประวัติศาสตร์</a
 		>
-		<a href="/ingredients" class="font-bold text-[#7a6355] transition hover:text-[#d64550]"
+		<a href="/ingredients" class="p-1.5 font-bold text-[#7a6355] transition hover:text-[#d64550]"
 			>ส่วนผสม</a
 		>
-		<a href="/process" class="font-bold text-[#7a6355] transition hover:text-[#d64550]"
+		<a href="/process" class="p-1.5 font-bold text-[#7a6355] transition hover:text-[#d64550]"
 			>กรรมวิธีทำ</a
 		>
-		<a href="/gallery" class="font-bold text-[#7a6355] transition hover:text-[#d64550]">แกลเลอรี</a>
+		<a href="/gallery" class="p-1.5 font-bold text-[#7a6355] transition hover:text-[#d64550]"
+			>แกลเลอรี</a
+		>
 	</nav>
 
 	<audio
@@ -172,8 +175,9 @@
 		class="hidden"
 	></audio>
 
+	<!-- อัปเดต: กรอบ Music Player ปรับความกว้างในมือถือไม่ให้ชิดขอบจอเกินไป -->
 	<div
-		class="relative z-10 mx-auto flex max-w-2xl flex-col items-center gap-8 rounded-4xl border-[3px] border-white/50 bg-white p-6 shadow-lg backdrop-blur-md md:flex-row"
+		class="relative z-10 mx-auto flex w-[90%] max-w-2xl flex-col items-center gap-6 rounded-3xl border-[3px] border-white/50 bg-white p-6 shadow-lg backdrop-blur-md md:flex-row md:gap-8 md:rounded-4xl"
 	>
 		<div
 			class="flex h-32 w-32 shrink-0 items-center justify-center overflow-hidden rounded-2xl border-4 border-[#ffb6c1] bg-[#fff0f3] shadow-inner"
