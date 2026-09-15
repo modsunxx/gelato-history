@@ -26,9 +26,6 @@ One of the standout features of this project is the custom ambient Lo-fi soundtr
 
 1.  **Drafting & Concept (Gemini):** Lyric generation and structural pacing (4/4 time signature) tailored to a relaxing cafe vibe.
 2.  **Original Composition (Suno AI):** Generating the base instrumental and vocal melodies based on custom prompts (e.g., Lo-fi pop, music box, chillhop).
-3.  **Stem Separation (UVR5):** Isolating vocals and instrumentals from the generated tracks.
-4.  **Vocal Conversion (RVC):** Transforming the AI vocals into a more natural, human-like voice using Retrieval-based Voice Conversion.
-5.  **Final Mix (Ableton Live):** Mixing the converted vocals back with the instrumentals, adding EQ, Reverb, and vinyl distortion to achieve the perfect Lo-fi aesthetic.
 
 ---
 
