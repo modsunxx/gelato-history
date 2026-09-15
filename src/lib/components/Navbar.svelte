@@ -10,12 +10,18 @@
 	let isLoop = $state(false);
 	let audioRef = $state<HTMLAudioElement>();
 
-	// 🌟 Playlist แบบใหม่: เก็บทั้งที่อยู่ไฟล์เพลงและที่อยู่รูปภาพปก[cite: 7]
+	// 🌟 Playlist แบบใหม่: ดึงไฟล์จากโฟลเดอร์ใหม่ที่เราสร้างไว้
 	const playlist = [
-		{ file: "/audio/A Cruel Angel's Thesis.mp3", cover: '/images/eva.png' },
-		{ file: '/audio/Crossing Field.mp3', cover: '/images/sao.png' },
-		{ file: '/audio/Styx Helix.mp3', cover: '/images/rezero.png' },
-		{ file: '/audio/Unravel.mp3', cover: '/images/tokyo.png' }
+		{ file: '/midnight-sweet/midnight-sweet.wav', cover: '/midnight-sweet/midnight-sweet.jpeg' },
+		{
+			file: '/city-lights-vanilla/city-lights-vanilla.wav',
+			cover: '/city-lights-vanilla/city-lights-vanilla.jpeg'
+		},
+		{ file: '/จุดหลอมเหลว/จุดหลอมเหลว.wav', cover: '/จุดหลอมเหลว/จุดหลอมเหลว.jpeg' },
+		{
+			file: '/last-order-คืนนี้/last-order-คืนนี้.wav',
+			cover: '/last-order-คืนนี้/last-order-คืนนี้.jpeg'
+		}
 	];
 	let currentTrackIndex = $state(0);
 
@@ -55,9 +61,9 @@
 	// ฟังก์ชันโหลดข้อมูลเพลงแบบใหม่ (รับ Object เข้ามา)[cite: 7]
 	function loadMetadata(track: { file: string; cover: string }) {
 		const path = track.file;
-		const fileName = path.split('/').pop()?.replace('.mp3', '') || 'Gelato Song';
+		const fileName = path.split('/').pop()?.replace('.wav', '') || 'Gelato Song';
 		songTitle = decodeURIComponent(fileName);
-		artistName = 'Music Box';
+		artistName = 'Adipa create by suno';
 
 		// 🌟 ใช้รูปภาพปกที่เราเตรียมไว้ทันที[cite: 7]
 		albumArt = track.cover;
