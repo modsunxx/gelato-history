@@ -1,42 +1,74 @@
-# sv
+# 🍦 Gelato History - Shibuya Night Cafe Edition
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+[![SvelteKit](https://img.shields.io/badge/SvelteKit-FF3E00?style=for-the-badge&logo=svelte&logoColor=white)](https://kit.svelte.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Deployed on Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://gelato-history.vercel.app/)
 
-## Creating a project
+A multimedia web development project exploring the art, history, and creation of authentic Italian Gelato. This project features a clean, minimalist pastel UI and a built-in ambient music player designed to evoke the relaxing atmosphere of a "Shibuya Night Cafe."
 
-If you're seeing this, you've probably already done this step. Congrats!
+🌐 **Live Demo:** [https://gelato-history.vercel.app](https://gelato-history.vercel.app)
 
-```sh
-# create a new project
-npx sv create my-app
+---
+
+## ✨ Features
+
+- **Minimalist UI/UX:** A soothing pastel color palette with clean, responsive layouts.
+- **Built-in Music Player:** A custom audio player with a curated playlist, featuring play/pause, shuffle, loop, seek bar, and "like" functionality.
+- **Responsive Design:** Optimized for both desktop and mobile viewing.
+- **Lucide Icons:** Clean and modern iconography replacing standard emojis for a professional look.
+- **Multi-Page Architecture:** Divided into History, Ingredients, Process, and a Visual Gallery.
+
+---
+
+## 🎵 AI Music Production Workflow
+
+One of the standout features of this project is the custom ambient Lo-fi soundtrack, produced using a cutting-edge AI music workflow:
+
+1.  **Drafting & Concept (Gemini):** Lyric generation and structural pacing (4/4 time signature) tailored to a relaxing cafe vibe.
+2.  **Original Composition (Suno AI):** Generating the base instrumental and vocal melodies based on custom prompts (e.g., Lo-fi pop, music box, chillhop).
+3.  **Stem Separation (UVR5):** Isolating vocals and instrumentals from the generated tracks.
+4.  **Vocal Conversion (RVC):** Transforming the AI vocals into a more natural, human-like voice using Retrieval-based Voice Conversion.
+5.  **Final Mix (Ableton Live):** Mixing the converted vocals back with the instrumentals, adding EQ, Reverb, and vinyl distortion to achieve the perfect Lo-fi aesthetic.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework:** [SvelteKit](https://kit.svelte.dev/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **Icons:** [Lucide-Svelte](https://lucide.dev/icons/)
+- **Audio Metadata:** `jsmediatags` (for reading local audio files)
+
+---
+
+## 🚀 Getting Started
+
+If you want to run this project locally, follow these steps:
+
+**1. Clone the repository**
+
+```bash
+git clone [https://github.com/modsunxx/gelato-history.git](https://github.com/modsunxx/gelato-history.git)
+cd gelato-history
 ```
 
-To recreate this project with the same configuration:
+**2. Install dependencies**
 
-```sh
-# recreate this project
-npx sv@0.17.0 create --template minimal --types ts --add prettier eslint tailwindcss="plugins:forms,typography" --install npm gelato-history
+```bash
+npm install
 ```
 
-## Developing
+**3. Start the development server**
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
+```bash
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
+The app will be available at `http://localhost:5173`.
 
-To create a production version of your app:
+---
 
-```sh
-npm run build
-```
+## 👨‍💻 Development Team
 
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+This project was created as part of a multimedia and web development showcase.
+_Design, Code, and Audio Production by **modsunxx**._
