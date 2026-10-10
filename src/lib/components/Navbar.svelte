@@ -91,9 +91,24 @@
 		}
 	}
 
-	onMount(() => {
+	onMount(async () => {
 		// โหลดเพลงแรกตอนเปิดเว็บ
 		loadMetadata(playlist[currentTrackIndex]);
+
+		// รอให้ HTML (audio element) โหลดเสร็จสมบูรณ์
+		await tick();
+
+		// พยายามสั่งให้เพลงเล่นอัตโนมัติ
+		if (audioRef) {
+			try {
+				await audioRef.play();
+				isPlaying = true; // ถ้าเล่นสำเร็จให้เปลี่ยนสถานะปุ่มเป็น Pause
+			} catch (err) {
+				// กรณีที่เบราว์เซอร์บล็อกการเล่นอัตโนมัติ
+				console.log('เบราว์เซอร์บล็อกการเล่นอัตโนมัติ (Autoplay policy)', err);
+				isPlaying = false;
+			}
+		}
 	});
 
 	// เล่น / หยุด

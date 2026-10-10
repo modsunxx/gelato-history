@@ -28,19 +28,23 @@
 		</p>
 
 		<!-- Mockup image box (โทนสีเหลือง) -->
+		<!-- กรอบแสดงรูปภาพของจริง (แทนที่ Mockup) -->
 		<div
-			class="mx-auto flex aspect-video w-full max-w-4xl flex-col items-center justify-center rounded-xl border-4 border-dashed border-[#fcd34d] bg-[#fef3c7] p-6 text-center shadow-sm"
+			class="mx-auto w-full max-w-4xl overflow-hidden rounded-xl border-4 border-[#fcd34d] bg-[#fef3c7] p-4 shadow-sm transition duration-300 hover:shadow-md hover:shadow-[#fcd34d]/40"
 		>
-			<Map size={56} class="mb-4 text-[#d97706]" />
-			<span class="text-xl font-bold text-[#555]"
-				>[ Image: History / Italy Map ]</span
-			>
-			<span class="mt-2 text-base font-semibold text-[#b45309]"
-				>📌 Recommended size: 1280 x 720 px (aspect ratio 16:9)</span
-			>
-			<span class="mt-2 text-sm text-gray-500"
-				>(Prepare your own drawn image, take a photo, crop, or use AI here)</span
-			>
+			<!-- ดึงรูปภาพจาก /image/history/ -->
+			<img 
+				src="/image/history/history.jpg" 
+				alt="ประวัติศาสตร์และต้นกำเนิดเจลลาโต้" 
+				class="aspect-video w-full rounded-lg object-cover shadow-sm"
+			/>
+			
+			<!-- แคปชั่นใต้รูปภาพ พร้อมไอคอนสีเหลืองอำพันเข้ากับกรอบ -->
+			<div class="mt-4 flex items-center justify-center gap-3 text-[#d97706]">
+				<Map size={24} />
+				<span class="text-lg font-bold text-[#b45309]">ต้นกำเนิดเจลลาโต้จากอิตาลี</span>
+				<Map size={24} />
+			</div>
 		</div>
 	</section>
 

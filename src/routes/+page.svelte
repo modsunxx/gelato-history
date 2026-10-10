@@ -3,7 +3,6 @@
 	// Import ไอคอนที่ต้องการจาก lucide-svelte
 	import {
 		IceCream,
-		Clapperboard,
 		ScrollText,
 		Cherry,
 		ChefHat,
@@ -65,20 +64,22 @@
 			วิดีโอแอนิเมชันด้านล่างนี้จะแสดงให้เห็นถึงขั้นตอนและศิลปะในการปั่นเจลลาโต้ให้ออกมาสมบูรณ์แบบ
 		</p>
 
-		<!-- กล่อง Mockup วิดีโอ/ภาพเคลื่อนไหว -->
+		<!-- กรอบแสดงวิดีโอของจริง (แทนที่ Mockup) -->
 		<div
-			class="relative mx-auto flex aspect-video w-full max-w-4xl flex-col items-center justify-center overflow-hidden rounded-xl border-4 border-dashed border-[#e06853] bg-[#fdfaf6] p-6 text-center shadow-sm"
+			class="mx-auto w-full max-w-4xl overflow-hidden rounded-xl border-4 border-[#f6e8d5] shadow-md transition duration-300 hover:shadow-lg hover:shadow-[#e06853]/30"
 		>
-			<Clapperboard size={56} class="z-10 mb-4 text-[#e06853]" />
-			<span class="z-10 text-xl font-bold text-[#1e40af]"
-				>[ พื้นที่สำหรับวิดีโอ / ภาพเคลื่อนไหว ]</span
+			<!-- ดึงวิดีโอจากโฟลเดอร์ /video/ -->
+			<video 
+				controls 
+				autoplay 
+				muted 
+				loop
+				class="aspect-video w-full bg-black object-cover"
 			>
-			<span class="z-10 mt-2 text-base font-semibold text-[#c2410c]"
-				>📌 ขนาดที่แนะนำ: 1280 x 720 px (หรือ 1920 x 1080 px)</span
-			>
-			<span class="z-10 mt-2 text-sm text-gray-500"
-				>(ต้องใช้วิดีโอที่ทำเองอย่างน้อย 1 อันในเว็บเพจ)</span
-			>
+				<source src="/video/video gelato.mp4" type="video/quicktime" />
+				<source src="/video/video gelato.mp4" type="video/mp4" />
+				เบราว์เซอร์ของคุณไม่รองรับการเล่นวิดีโอนี้
+			</video>
 		</div>
 	</section>
 
