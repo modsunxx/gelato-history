@@ -1,6 +1,5 @@
 <script>
 	import { resolve } from '$app/paths';
-	// Import ไอคอนที่ต้องการจาก lucide-svelte
 	import { Camera, IceCream, Citrus, Leaf, Coffee, ArrowLeft } from 'lucide-svelte';
 </script>
 
@@ -9,7 +8,6 @@
 </svelte:head>
 
 <div class="space-y-12 pb-12">
-	<!-- Hero Section (โทนสีม่วงอ่อน) -->
 	<header class="rounded-2xl bg-[#faf5ff] px-6 py-12 text-center shadow-sm">
 		<h1
 			class="mb-4 flex flex-wrap items-center justify-center gap-3 text-4xl font-extrabold text-[#7e22ce] md:text-5xl"
@@ -21,24 +19,20 @@
 		</p>
 	</header>
 
-	<!-- จัด Section ให้อยู่กึ่งกลางเหมือนหน้าอื่นๆ -->
 	<section class="mx-auto max-w-4xl text-center">
-		<!-- หัวข้อใช้โทนสีชมพูเข้ม -->
 		<h2
 			class="mb-8 inline-block border-b-4 border-[#f472b6] pb-2 text-2xl font-bold text-[#be185d]"
 		>
 			หลากหลายรสชาติให้ลิ้มลอง
 		</h2>
 
-		<!-- ปรับ Grid ให้เป็น 2 คอลัมน์ (2x2) ใส่รูปจริง -->
 		<div class="grid grid-cols-1 gap-8 sm:grid-cols-2">
-			<!-- รูปที่ 1: ช็อกโกแลต -->
+			<!-- รูปที่ 1: ช็อกโกแลต (เปลี่ยนเป็น choco.png) -->
 			<div
 				class="group flex flex-col items-center rounded-xl border border-[#fb7185]/30 bg-[#fff1f2] p-4 text-center shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md hover:shadow-[#fb7185]/20"
 			>
-				<!-- อัปเดต: เปลี่ยนเป็น .PNG พิมพ์ใหญ่ ตามไฟล์จริง -->
 				<img 
-					src="/image/gallary/chocalate.PNG" 
+					src="/image/gallary/choco.png" 
 					alt="Gelato รสช็อกโกแลต" 
 					class="mb-4 aspect-square w-full rounded-lg object-cover shadow-sm transition duration-300 group-hover:scale-[1.02]" 
 				/>
@@ -47,11 +41,10 @@
 				</h3>
 			</div>
 
-			<!-- รูปที่ 2: ซอร์เบต์เลมอน -->
+			<!-- รูปที่ 2: ซอร์เบต์เลมอน (เหมือนเดิม) -->
 			<div
 				class="group flex flex-col items-center rounded-xl border border-[#fb7185]/30 bg-[#fff1f2] p-4 text-center shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md hover:shadow-[#fb7185]/20"
 			>
-				<!-- อัปเดต: ไฟล์นี้เป็น .png พิมพ์เล็ก ถูกแล้ว -->
 				<img 
 					src="/image/gallary/lemon.png" 
 					alt="Gelato ซอร์เบต์เลมอน" 
@@ -62,13 +55,12 @@
 				</h3>
 			</div>
 
-			<!-- รูปที่ 3: พิสตาชิโอ -->
+			<!-- รูปที่ 3: พิสตาชิโอ (เปลี่ยนเป็น pistachio.png) -->
 			<div
 				class="group flex flex-col items-center rounded-xl border border-[#fb7185]/30 bg-[#fff1f2] p-4 text-center shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md hover:shadow-[#fb7185]/20"
 			>
-				<!-- อัปเดต: เปลี่ยนเป็น .PNG พิมพ์ใหญ่ ตามไฟล์จริง -->
 				<img 
-					src="/image/gallary/pitachio.PNG" 
+					src="/image/gallary/pistachio.png" 
 					alt="Gelato รสพิสตาชิโอ" 
 					class="mb-4 aspect-square w-full rounded-lg object-cover shadow-sm transition duration-300 group-hover:scale-[1.02]" 
 				/>
@@ -77,13 +69,12 @@
 				</h3>
 			</div>
 
-			<!-- รูปที่ 4: กาแฟ -->
+			<!-- รูปที่ 4: กาแฟ (เปลี่ยนเป็น cafe.png) -->
 			<div
 				class="group flex flex-col items-center rounded-xl border border-[#fb7185]/30 bg-[#fff1f2] p-4 text-center shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md hover:shadow-[#fb7185]/20"
 			>
-				<!-- อัปเดต: เปลี่ยนเป็น .PNG พิมพ์ใหญ่ ตามไฟล์จริง -->
 				<img 
-					src="/image/gallary/coffee.PNG" 
+					src="/image/gallary/cafe.png" 
 					alt="Gelato รสกาแฟ" 
 					class="mb-4 aspect-square w-full rounded-lg object-cover shadow-sm transition duration-300 group-hover:scale-[1.02]" 
 				/>
@@ -94,7 +85,6 @@
 		</div>
 	</section>
 
-	<!-- ปุ่มกลับหน้าแรกแบบเด่นๆ (ใช้โทนสีชมพู) -->
 	<div class="mt-12 text-center">
 		<a
 			href={resolve('/')}
