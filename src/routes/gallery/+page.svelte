@@ -36,9 +36,9 @@
 			<div
 				class="group flex flex-col items-center rounded-xl border border-[#fb7185]/30 bg-[#fff1f2] p-4 text-center shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md hover:shadow-[#fb7185]/20"
 			>
-				<!-- อัปเดต: เปลี่ยนเป็น .png พิมพ์เล็ก -->
+				<!-- อัปเดต: เปลี่ยนเป็น .PNG พิมพ์ใหญ่ ตามไฟล์จริง -->
 				<img 
-					src="/image/gallary/chocalate.png" 
+					src="/image/gallary/chocalate.PNG" 
 					alt="Gelato รสช็อกโกแลต" 
 					class="mb-4 aspect-square w-full rounded-lg object-cover shadow-sm transition duration-300 group-hover:scale-[1.02]" 
 				/>
@@ -51,7 +51,7 @@
 			<div
 				class="group flex flex-col items-center rounded-xl border border-[#fb7185]/30 bg-[#fff1f2] p-4 text-center shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md hover:shadow-[#fb7185]/20"
 			>
-				<!-- อัปเดต: เปลี่ยนเป็น .png พิมพ์เล็ก -->
+				<!-- อัปเดต: ไฟล์นี้เป็น .png พิมพ์เล็ก ถูกแล้ว -->
 				<img 
 					src="/image/gallary/lemon.png" 
 					alt="Gelato ซอร์เบต์เลมอน" 
@@ -66,9 +66,9 @@
 			<div
 				class="group flex flex-col items-center rounded-xl border border-[#fb7185]/30 bg-[#fff1f2] p-4 text-center shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md hover:shadow-[#fb7185]/20"
 			>
-				<!-- อัปเดต: เปลี่ยนเป็น .png พิมพ์เล็ก -->
+				<!-- อัปเดต: เปลี่ยนเป็น .PNG พิมพ์ใหญ่ ตามไฟล์จริง -->
 				<img 
-					src="/image/gallary/pitachio.png" 
+					src="/image/gallary/pitachio.PNG" 
 					alt="Gelato รสพิสตาชิโอ" 
 					class="mb-4 aspect-square w-full rounded-lg object-cover shadow-sm transition duration-300 group-hover:scale-[1.02]" 
 				/>
@@ -81,9 +81,9 @@
 			<div
 				class="group flex flex-col items-center rounded-xl border border-[#fb7185]/30 bg-[#fff1f2] p-4 text-center shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md hover:shadow-[#fb7185]/20"
 			>
-				<!-- อัปเดต: เปลี่ยนเป็น .png พิมพ์เล็ก -->
+				<!-- อัปเดต: เปลี่ยนเป็น .PNG พิมพ์ใหญ่ ตามไฟล์จริง -->
 				<img 
-					src="/image/gallary/coffee.png" 
+					src="/image/gallary/coffee.PNG" 
 					alt="Gelato รสกาแฟ" 
 					class="mb-4 aspect-square w-full rounded-lg object-cover shadow-sm transition duration-300 group-hover:scale-[1.02]" 
 				/>
