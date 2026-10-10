@@ -10,25 +10,27 @@
 	let isLoop = $state(false);
 	let audioRef = $state<HTMLAudioElement>();
 
-	// 🌟 Playlist แบบใหม่: ดึงไฟล์จากโฟลเดอร์ใหม่ที่เราสร้างไว้
+	// 🌟 Playlist แบบใหม่: ดึงไฟล์เพลงบรรเลงจากโฟลเดอร์ song
 	const playlist = [
-		{ file: '/midnight-sweet/midnight-sweet.wav', cover: '/midnight-sweet/midnight-sweet.jpeg' },
-		{
-			file: '/city-lights-vanilla/city-lights-vanilla.wav',
-			cover: '/city-lights-vanilla/city-lights-vanilla.jpeg'
+		{ 
+			file: '/song/Aroma de Pão - usesuno.com/Aroma de Pão - usesuno.com.mp3', 
+			cover: '/song/Aroma de Pão - usesuno.com/Aroma de Pão - usesuno.com.jpeg' 
 		},
-		{ file: '/จุดหลอมเหลว/จุดหลอมเหลว.wav', cover: '/จุดหลอมเหลว/จุดหลอมเหลว.jpeg' },
 		{
-			file: '/last-order-คืนนี้/last-order-คืนนี้.wav',
-			cover: '/last-order-คืนนี้/last-order-คืนนี้.jpeg'
+			file: '/song/Caffetto di Roma - usesuno.com/Caffetto di Roma - usesuno.com.mp3',
+			cover: '/song/Caffetto di Roma - usesuno.com/Caffetto di Roma - usesuno.com.jpeg'
+		},
+		{ 
+			file: '/song/Sunny Day in Rome - usesuno.com/Sunny Day in Rome - usesuno.com.mp3', 
+			cover: '/song/Sunny Day in Rome - usesuno.com/Sunny Day in Rome - usesuno.com.jpeg' 
 		}
 	];
 	let currentTrackIndex = $state(0);
 
-	// ดึงเฉพาะที่อยู่ไฟล์เสียงไปให้ <audio> เล่น[cite: 7]
+	// ดึงเฉพาะที่อยู่ไฟล์เสียงไปให้ <audio> เล่น
 	let currentAudioSrc = $derived(playlist[currentTrackIndex].file);
 
-	// เก็บเพลงที่ถูกกดใจ (เก็บเป็น index ของ playlist)[cite: 7]
+	// เก็บเพลงที่ถูกกดใจ (เก็บเป็น index ของ playlist)
 	let likedTracks = new SvelteSet<number>();
 	let isLiked = $derived(likedTracks.has(currentTrackIndex));
 
@@ -40,7 +42,7 @@
 		}
 	}
 
-	// แปลงวินาที -> "นาที:วินาที" เช่น 90 -> "1:30"[cite: 7]
+	// แปลงวินาที -> "นาที:วินาที" เช่น 90 -> "1:30"
 	function formatTime(seconds: number) {
 		if (!seconds || Number.isNaN(seconds)) return '0:00';
 		const m = Math.floor(seconds / 60);
@@ -48,32 +50,36 @@
 		return `${m}:${s.toString().padStart(2, '0')}`;
 	}
 
-	// ข้อมูลเพลง[cite: 7]
+	// ข้อมูลเพลง
 	let songTitle = $state('กำลังโหลด...');
 	let artistName = $state('...');
 	let albumArt = $state<string | null>(null);
 
-	// ควบคุมเวลาและแถบ Progress[cite: 7]
+	// ควบคุมเวลาและแถบ Progress
 	let currentTime = $state(0);
 	let duration = $state(0);
 	let progressPercent = $derived(duration > 0 ? (currentTime / duration) * 100 : 0);
 
-	// ฟังก์ชันโหลดข้อมูลเพลงแบบใหม่ (รับ Object เข้ามา)[cite: 7]
+	// ฟังก์ชันโหลดข้อมูลเพลงแบบใหม่
 	function loadMetadata(track: { file: string; cover: string }) {
 		const path = track.file;
-		const fileName = path.split('/').pop()?.replace('.wav', '') || 'Gelato Song';
+		
+		// อัปเดต: ตัด .mp3 และคำว่า - usesuno.com ออกจากชื่อไฟล์เพื่อให้ชื่อเพลงดูสะอาดตา
+		let fileName = path.split('/').pop() || 'Gelato Song';
+		fileName = fileName.replace('.mp3', '').replace(' - usesuno.com', '');
+		
 		songTitle = decodeURIComponent(fileName);
-		artistName = 'Adipa create by suno';
+		artistName = 'Adipa (Created by Suno)';
 
-		// 🌟 ใช้รูปภาพปกที่เราเตรียมไว้ทันที[cite: 7]
+		// 🌟 ใช้รูปภาพปกที่เราเตรียมไว้ทันที
 		albumArt = track.cover;
 
 		try {
 			jsmediatags.read(path, {
 				onSuccess: (tag) => {
 					const { title, artist } = tag.tags;
-					// ถ้ามีชื่อเพลง/ศิลปินฝังมา ค่อยอัปเดตทับลงไป[cite: 7]
-					if (title) songTitle = title;
+					// ถ้ามีชื่อเพลง/ศิลปินฝังมา ค่อยอัปเดตทับลงไป
+					if (title) songTitle = title.replace(' - usesuno.com', '');
 					if (artist) artistName = artist;
 				},
 				onError: (error) => {
@@ -86,11 +92,11 @@
 	}
 
 	onMount(() => {
-		// โหลดเพลงแรกตอนเปิดเว็บ[cite: 7]
+		// โหลดเพลงแรกตอนเปิดเว็บ
 		loadMetadata(playlist[currentTrackIndex]);
 	});
 
-	// เล่น / หยุด[cite: 7]
+	// เล่น / หยุด
 	async function togglePlay() {
 		if (audioRef) {
 			if (isPlaying) {
@@ -102,7 +108,7 @@
 		}
 	}
 
-	// เปลี่ยนเพลง (หน้า/หลัง/สุ่ม)[cite: 7]
+	// เปลี่ยนเพลง (หน้า/หลัง/สุ่ม)
 	async function changeTrack(step: number) {
 		if (isShuffle) {
 			let nextIndex;
@@ -115,7 +121,7 @@
 		}
 
 		currentTime = 0;
-		// ส่ง Object เพลงใหม่เข้าไป[cite: 7]
+		// ส่ง Object เพลงใหม่เข้าไป
 		loadMetadata(playlist[currentTrackIndex]);
 
 		await tick();
@@ -124,7 +130,7 @@
 		}
 	}
 
-	// เมื่อเพลงเล่นจบ[cite: 7]
+	// เมื่อเพลงเล่นจบ
 	function onSongEnded() {
 		if (isLoop && audioRef) {
 			audioRef.currentTime = 0;
@@ -134,7 +140,7 @@
 		}
 	}
 
-	// ฟังก์ชันสำหรับคลิกที่หลอดเวลาเพื่อกรอเพลง[cite: 7]
+	// ฟังก์ชันสำหรับคลิกที่หลอดเวลาเพื่อกรอเพลง
 	function seekMusic(event: MouseEvent) {
 		if (!audioRef || duration === 0) return;
 		const progressBar = event.currentTarget as HTMLElement;
@@ -165,7 +171,7 @@
 			>ส่วนผสม</a
 		>
 		<a href="/process" class="p-1.5 font-bold text-[#7a6355] transition hover:text-[#d64550]"
-			>กรรมวิธีทำ</a
+			>วิธีการทำ</a
 		>
 		<a href="/gallery" class="p-1.5 font-bold text-[#7a6355] transition hover:text-[#d64550]"
 			>แกลเลอรี</a

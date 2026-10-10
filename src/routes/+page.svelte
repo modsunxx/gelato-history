@@ -3,7 +3,6 @@
 	// Import ไอคอนที่ต้องการจาก lucide-svelte
 	import {
 		IceCream,
-		Image,
 		Clapperboard,
 		ScrollText,
 		Cherry,
@@ -43,19 +42,16 @@
 			เตรียมพบกับเรื่องราวความอร่อยที่เราตั้งใจนำเสนอ
 		</p>
 
-		<!-- กล่อง Mockup รูปภาพ -->
-		<div
-			class="mx-auto flex aspect-video w-full max-w-4xl flex-col items-center justify-center rounded-xl border-4 border-dashed border-[#e06853] bg-[#fdfaf6] p-6 text-center shadow-sm"
-		>
-			<Image size={56} class="mb-4 text-[#e06853]" />
-			<span class="text-xl font-bold text-[#1e40af]">[ พื้นที่สำหรับรูปภาพ Gelato ]</span>
-			<span class="mt-2 text-base font-semibold text-[#c2410c]"
-				>📌 ขนาดที่แนะนำ: 1280 x 720 px (สัดส่วน 16:9)</span
-			>
-			<span class="mt-2 text-sm text-gray-500"
-				>(เตรียมใส่รูปภาพที่วาดเอง ถ่ายเอง ตัดต่อ หรือใช้ AI ที่นี่)</span
-			>
-		</div>
+		<!-- กรอบแสดงรูปภาพของจริง (แทนที่ Mockup) -->
+    <div
+      class="mx-auto w-full max-w-4xl overflow-hidden rounded-xl border-4 border-[#f6e8d5] shadow-md transition duration-300 hover:shadow-lg hover:shadow-[#e06853]/30"
+    >
+      <img 
+        src="/image/main/main.JPG" 
+        alt="ภาพรวม Gelato หลากรสชาติ" 
+        class="aspect-video w-full object-cover"
+      />
+    </div>
 	</section>
 
 	<!-- ส่วนวิดีโอหรือภาพเคลื่อนไหว -->
@@ -113,7 +109,7 @@
 				class="group rounded-xl border-2 border-[#f6e8d5] bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-[#bfdbfe] hover:shadow-lg hover:shadow-[#bfdbfe]/40"
 			>
 				<h3 class="mb-2 flex items-center justify-center gap-2 text-xl font-bold text-[#e06853] transition group-hover:text-[#2563eb]">
-					<ChefHat size={24} class="transition group-hover:scale-110" /> กรรมวิธีทำ
+					<ChefHat size={24} class="transition group-hover:scale-110" /> วิธีการทำ
 				</h3>
 				<p class="text-sm text-gray-500">ขั้นตอนการปั่น</p>
 			</a>

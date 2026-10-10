@@ -36,23 +36,23 @@
 			ทำให้ต่อมรับรสของเราสัมผัสถึงความอร่อยได้เต็มที่ตั้งแต่คำแรก
 		</p>
 
-		<!-- กล่อง Mockup รูปภาพ (แก้ไขโครงสร้าง span ที่พังให้ถูกต้อง) -->
+		<!-- กรอบแสดงรูปภาพของจริง (แทนที่ Mockup) -->
 		<div
-			class="mx-auto flex aspect-video w-full max-w-4xl flex-col items-center justify-center rounded-xl border-4 border-dashed border-[#7dd3fc] bg-[#e0f2fe] p-6 text-center shadow-sm"
+			class="mx-auto w-full max-w-4xl overflow-hidden rounded-xl border-2 border-[#bae6fd] bg-[#f0f9ff] p-4 shadow-sm transition duration-300 hover:shadow-md hover:shadow-[#7dd3fc]/40"
 		>
-			<div class="mb-4 flex gap-4 text-[#0284c7]">
-				<Settings size={56} />
-				<ThermometerSnowflake size={56} />
+			<!-- ดึงรูปภาพจากโฟลเดอร์ static -->
+			<img 
+  src="image/process/process.png" 
+  alt="กระบวนการทำเจลลาโต้" 
+  class="aspect-video w-full rounded-lg object-cover shadow-sm"
+/>
+			
+			<!-- แคปชั่นใต้รูปภาพ พร้อมไอคอน -->
+			<div class="mt-4 flex items-center justify-center gap-3 text-[#0284c7]">
+				<Settings size={24} />
+				<span class="text-lg font-bold text-[#0c4a6e]">การควบคุมอากาศและอุณหภูมิ</span>
+				<ThermometerSnowflake size={24} />
 			</div>
-			<span class="text-xl font-bold text-[#0c4a6e]"
-				>[ ภาพประกอบ: เครื่องปั่น หรือ ขั้นตอนการทำ ]</span
-			>
-			<span class="mt-2 text-base font-semibold text-[#0369a1]"
-				>📌 ขนาดที่แนะนำ: 1280 x 720 px (สัดส่วน 16:9)</span
-			>
-			<span class="mt-2 text-sm text-gray-500"
-				>(พื้นที่สำหรับทีมวาดรูป: วาดเครื่องทำเจลลาโต้ หรือเชฟกำลังตักเจลลาโต้ด้วยไม้พาย)</span
-			>
 		</div>
 	</section>
 

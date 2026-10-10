@@ -35,21 +35,23 @@
 			ถั่วพรีเมียมอย่างพิสตาชิโอ หรือช็อกโกแลตแท้ โดยไม่พึ่งพาสารแต่งกลิ่นสังเคราะห์
 		</p>
 
-		<!-- Mockup image box (โทนสีเขียวมิ้นต์ ตัดด้วยไอคอนสีแดงอมชมพู) -->
+<!-- กรอบแสดงรูปภาพของจริง (แทนที่ Mockup) -->
 		<div
-			class="mx-auto flex aspect-video w-full max-w-4xl flex-col items-center justify-center rounded-xl border-4 border-dashed border-[#34d399] bg-[#ecfdf5] p-6 text-center shadow-sm"
+			class="mx-auto w-full max-w-4xl overflow-hidden rounded-xl border-2 border-[#34d399] bg-[#ecfdf5] p-4 shadow-sm transition duration-300 hover:shadow-md hover:shadow-[#34d399]/40"
 		>
-			<div class="mb-4 flex gap-4 text-[#be123c]">
-				<Milk size={56} />
-				<Cherry size={56} />
+			<!-- ดึงรูปภาพจาก /image/ingredients/ -->
+			<img 
+				src="/image/ingredients/ingredients.JPG" 
+				alt="ส่วนผสมหลักของเจลลาโต้" 
+				class="aspect-video w-full rounded-lg object-cover shadow-sm"
+			/>
+			
+			<!-- แคปชั่นใต้รูปภาพ พร้อมไอคอนสีแดงอมชมพูตัดกับกรอบสีเขียวมิ้นต์ -->
+			<div class="mt-4 flex items-center justify-center gap-3 text-[#be123c]">
+				<Milk size={24} />
+				<span class="text-lg font-bold text-[#065f46]">วัตถุดิบคุณภาพเกรดพรีเมียม</span>
+				<Cherry size={24} />
 			</div>
-			<span class="text-xl font-bold text-[#065f46]">[ ภาพประกอบ: วัตถุดิบทำ Gelato ]</span>
-			<span class="mt-2 text-base font-semibold text-[#047857]"
-				>📌 ขนาดที่แนะนำ: 1280 x 720 px (สัดส่วน 16:9)</span
-			>
-			<span class="mt-2 text-sm text-gray-500"
-				>(พื้นที่สำหรับทีมวาดรูป: วาดนมสด สตรอว์เบอร์รี ถั่ว หรือช็อกโกแลต)</span
-			>
 		</div>
 	</section>
 

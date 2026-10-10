@@ -30,54 +30,63 @@
 			หลากหลายรสชาติให้ลิ้มลอง
 		</h2>
 
-		<!-- ปรับ Grid ให้เป็น 2 คอลัมน์ (2x2) เพื่อความสมดุลของ 4 รูป -->
+		<!-- ปรับ Grid ให้เป็น 2 คอลัมน์ (2x2) ใส่รูปจริง -->
 		<div class="grid grid-cols-1 gap-8 sm:grid-cols-2">
-			<!-- Mockup 1 (ใช้โทนสีชมพูอมแดง) -->
+			<!-- รูปที่ 1: ช็อกโกแลต -->
 			<div
-				class="flex aspect-square flex-col items-center justify-center rounded-xl border-4 border-dashed border-[#fb7185] bg-[#fff1f2] p-4 text-center shadow-sm transition hover:scale-[1.02]"
+				class="group flex flex-col items-center rounded-xl border border-[#fb7185]/30 bg-[#fff1f2] p-4 text-center shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md hover:shadow-[#fb7185]/20"
 			>
-				<IceCream size={56} class="mb-4 text-[#e11d48]" />
-				<span class="text-lg font-bold text-[#555]">Gelato รูปที่ 1</span>
-				<span class="mt-1 text-sm text-gray-500">(รสช็อกโกแลต)</span>
-				<span class="mt-4 text-xs font-semibold text-[#9f1239]"
-					>📌 แนะนำขนาด 1:1 (เช่น 800x800 px)</span
-				>
+				<!-- ดึงรูปจาก /image/gallary/ -->
+				<img 
+					src="/image/gallary/chocalate.PNG" 
+					alt="Gelato รสช็อกโกแลต" 
+					class="mb-4 aspect-square w-full rounded-lg object-cover shadow-sm transition duration-300 group-hover:scale-[1.02]" 
+				/>
+				<h3 class="flex items-center gap-2 text-xl font-bold text-[#9f1239]">
+					<IceCream size={24} class="text-[#e11d48]" /> รสช็อกโกแลต
+				</h3>
 			</div>
 
-			<!-- Mockup 2 -->
+			<!-- รูปที่ 2: ซอร์เบต์เลมอน -->
 			<div
-				class="flex aspect-square flex-col items-center justify-center rounded-xl border-4 border-dashed border-[#fb7185] bg-[#fff1f2] p-4 text-center shadow-sm transition hover:scale-[1.02]"
+				class="group flex flex-col items-center rounded-xl border border-[#fb7185]/30 bg-[#fff1f2] p-4 text-center shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md hover:shadow-[#fb7185]/20"
 			>
-				<Citrus size={56} class="mb-4 text-[#e11d48]" />
-				<span class="text-lg font-bold text-[#555]">Gelato รูปที่ 2</span>
-				<span class="mt-1 text-sm text-gray-500">(ซอร์เบต์เลมอน)</span>
-				<span class="mt-4 text-xs font-semibold text-[#9f1239]"
-					>📌 แนะนำขนาด 1:1 (เช่น 800x800 px)</span
-				>
+				<img 
+					src="/image/gallary/lemon.jpg" 
+					alt="Gelato ซอร์เบต์เลมอน" 
+					class="mb-4 aspect-square w-full rounded-lg object-cover shadow-sm transition duration-300 group-hover:scale-[1.02]" 
+				/>
+				<h3 class="flex items-center gap-2 text-xl font-bold text-[#9f1239]">
+					<Citrus size={24} class="text-[#e11d48]" /> ซอร์เบต์เลมอน
+				</h3>
 			</div>
 
-			<!-- Mockup 3 -->
+			<!-- รูปที่ 3: พิสตาชิโอ -->
 			<div
-				class="flex aspect-square flex-col items-center justify-center rounded-xl border-4 border-dashed border-[#fb7185] bg-[#fff1f2] p-4 text-center shadow-sm transition hover:scale-[1.02]"
+				class="group flex flex-col items-center rounded-xl border border-[#fb7185]/30 bg-[#fff1f2] p-4 text-center shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md hover:shadow-[#fb7185]/20"
 			>
-				<Leaf size={56} class="mb-4 text-[#e11d48]" />
-				<span class="text-lg font-bold text-[#555]">Gelato รูปที่ 3</span>
-				<span class="mt-1 text-sm text-gray-500">(รสชาเขียว/พิสตาชิโอ)</span>
-				<span class="mt-4 text-xs font-semibold text-[#9f1239]"
-					>📌 แนะนำขนาด 1:1 (เช่น 800x800 px)</span
-				>
+				<img 
+					src="/image/gallary/pitachio.PNG" 
+					alt="Gelato รสพิสตาชิโอ" 
+					class="mb-4 aspect-square w-full rounded-lg object-cover shadow-sm transition duration-300 group-hover:scale-[1.02]" 
+				/>
+				<h3 class="flex items-center gap-2 text-xl font-bold text-[#9f1239]">
+					<Leaf size={24} class="text-[#e11d48]" /> รสพิสตาชิโอ
+				</h3>
 			</div>
 
-			<!-- Mockup 4 -->
+			<!-- รูปที่ 4: กาแฟ -->
 			<div
-				class="flex aspect-square flex-col items-center justify-center rounded-xl border-4 border-dashed border-[#fb7185] bg-[#fff1f2] p-4 text-center shadow-sm transition hover:scale-[1.02]"
+				class="group flex flex-col items-center rounded-xl border border-[#fb7185]/30 bg-[#fff1f2] p-4 text-center shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md hover:shadow-[#fb7185]/20"
 			>
-				<Coffee size={56} class="mb-4 text-[#e11d48]" />
-				<span class="text-lg font-bold text-[#555]">Gelato รูปที่ 4</span>
-				<span class="mt-1 text-sm text-gray-500">(รสกาแฟ)</span>
-				<span class="mt-4 text-xs font-semibold text-[#9f1239]"
-					>📌 แนะนำขนาด 1:1 (เช่น 800x800 px)</span
-				>
+				<img 
+					src="/image/gallary/coffee.PNG" 
+					alt="Gelato รสกาแฟ" 
+					class="mb-4 aspect-square w-full rounded-lg object-cover shadow-sm transition duration-300 group-hover:scale-[1.02]" 
+				/>
+				<h3 class="flex items-center gap-2 text-xl font-bold text-[#9f1239]">
+					<Coffee size={24} class="text-[#e11d48]" /> รสกาแฟ
+				</h3>
 			</div>
 		</div>
 	</section>
